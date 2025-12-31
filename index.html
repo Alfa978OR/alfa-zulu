@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alfa Online Radio</title>
+  <!-- Open Graph / WhatsApp Preview -->
+<meta property="og:title" content="Alfa Online Radio">
+<meta property="og:description" content="Lalela ukufundwa kweBhayibheli ngesiZulu">
+<meta property="og:image" content="https://alfaradio.pages.dev/og-image-v1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://alfaradio.pages.dev/">
+<meta property="og:type" content="website">
+
+  <!-- Favicon -->
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="shortcut icon" href="favicon-32.png">
+
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <img src="logo.png" alt="Station Logo" class="logo">
+
+    <h1>Alfa Online Radio</h1>
+
+    <p class="tagline">
+      Khetha u-“Dlala/Play” ukuze ulalele ukufundwa kweBhayibheli. Sicela uqaphele: ekuqaleni kuba nokuthula cishe imizuzwana engu-10 kuya kwengu-20, bese kulandela isikhangiso sentengiso ngolunye ulimi (imizuzwana engu-30 kuya kwengu-40) ngaphambi kokuba kuqale ukufundwa kweBhayibheli.
+    </p>
+
+    <button id="playBtn"
+  data-cf-analytics="Play Button Click">
+  Dlala / Play
+</button>
+
+<div class="links">
+  <a
+    href="https://chat.whatsapp.com/FoQl3iIoR4L6rb7PK6zePm"
+    class="btn whatsapp"
+    target="_blank"
+    rel="noopener"
+  >
+    Joyina Iqembu labaLaleli ku-WhatsApp
+  </a>
+
+  <a
+    href="https://alfaradio.co.za/"
+    class="btn home"
+    target="_self"
+  >
+    Buya ekhasini lekhaya
+  </a>
+</div>
+
+
+    <audio id="radio" preload="none" crossorigin="anonymous">
+      <source src="https://stream.zeno.fm/hx9w4enqbkmtv" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- JavaScript MUST be inside script tags -->
+  <script>
+    const audio = document.getElementById("radio");
+    const btn = document.getElementById("playBtn");
+
+    audio.addEventListener("error", () => {
+      alert("Stream temporarily unavailable. Please select PLAY again.");
+    });
+
+    btn.onclick = async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          btn.textContent = "Misa kancane / Pause";
+          setMediaSession();
+        } catch (e) {
+          alert("Unable to start stream. Please select PLAY again.");
+        }
+      } else {
+        audio.pause();
+        btn.textContent = "Dlala / Play";
+      }
+    };
+
+    function setMediaSession() {
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: "Alfa Online Radio",
+          artist: "Live Broadcast",
+          artwork: [
+            { src: "icon-192.png", sizes: "192x192", type: "image/png" },
+            { src: "icon-512.png", sizes: "512x512", type: "image/png" }
+          ]
+        });
+
+        navigator.mediaSession.setActionHandler("play", async () => {
+          await audio.play();
+          btn.textContent = "Misa kancane / Pause";
+        });
+
+        navigator.mediaSession.setActionHandler("pause", () => {
+          audio.pause();
+          btn.textContent = "Dlala / Play";
+        });
+      }
+    }
+  </script>
+</body>
+</html>
