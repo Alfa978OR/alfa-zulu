@@ -32,12 +32,12 @@
     <h1>Alfa Online Radio</h1>
 
     <p class="tagline">
-      Khetha u-“Dlala/Play” ukuze ulalele ukufundwa kweBhayibheli. Sicela uqaphele: ekuqaleni kuba nokuthula cishe imizuzwana engu-10 kuya kwengu-20, bese kulandela isikhangiso sentengiso ngolunye ulimi (imizuzwana engu-30 kuya kwengu-40) ngaphambi kokuba kuqale ukufundwa kweBhayibheli.
+      Khetha u-“Dlala ▶️ Play” ukuze ulalele ukufundwa kweBhayibheli. Sicela uqaphele: ekuqaleni kuba nokuthula cishe imizuzwana engu-10 kuya kwengu-20, bese kulandela isikhangiso sentengiso ngolunye ulimi (imizuzwana engu-30 kuya kwengu-40) ngaphambi kokuba kuqale ukufundwa kweBhayibheli.
     </p>
 
     <button id="playBtn"
   data-cf-analytics="Play Button Click">
-  Dlala / Play
+  Dlala ▶️ Play
 </button>
 
 <div class="links">
@@ -47,7 +47,7 @@
     target="_blank"
     rel="noopener"
   >
-    Joyina Iqembu labaLaleli ku-WhatsApp
+    ➕ Joyina Iqembu labaLaleli 👥💬 ku-WhatsApp
   </a>
 
   <a
@@ -55,7 +55,7 @@
     class="btn home"
     target="_self"
   >
-    Buya ekhasini lekhaya
+    🏠 Buya ekhasini lekhaya
   </a>
 </div>
 
@@ -71,21 +71,21 @@
     const btn = document.getElementById("playBtn");
 
     audio.addEventListener("error", () => {
-      alert("Stream temporarily unavailable. Please select PLAY again.");
+      alert("📢 Stream temporarily unavailable. Please select Ok, and then select ▶️ PLAY again.");
     });
 
     btn.onclick = async () => {
       if (audio.paused) {
         try {
           await audio.play();
-          btn.textContent = "Misa kancane / Pause";
+          btn.textContent = "Misa kancane ⏸️ Pause";
           setMediaSession();
         } catch (e) {
-          alert("Unable to start stream. Please select PLAY again.");
+          alert("📢 Unable to start stream. Please select Ok, and then select ▶️ PLAY again.");
         }
       } else {
         audio.pause();
-        btn.textContent = "Dlala / Play";
+        btn.textContent = "Dlala ▶️ Play";
       }
     };
 
