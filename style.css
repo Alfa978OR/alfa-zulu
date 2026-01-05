@@ -132,3 +132,27 @@ footer {
     --button-width: 100%;
   }
 }
+
+.audio-status {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+/* Live = red */
+.audio-status.live {
+  color: #ff4d4d;
+}
+
+/* Paused = neutral */
+.audio-status.paused {
+  color: #bbbbbb;
+}
+
+/* Error state */
+.audio-status.error {
+  color: #ffb020;
+}
+
