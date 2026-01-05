@@ -1,10 +1,26 @@
+/* =========================
+   Global base
+========================= */
+
+:root {
+  --button-width: 320px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #111;
   color: #fff;
   text-align: center;
 }
+
+/* =========================
+   Layout
+========================= */
 
 .app {
   max-width: 400px;
@@ -17,98 +33,102 @@ body {
   margin-bottom: 20px;
 }
 
-button {
-  font-size: 20px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
-  background: #e53935;
-  color: white;
-  cursor: pointer;
-}
-
-button:active {
-  opacity: 0.8;
-}
-
 .tagline {
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: 30px;
+  line-height: 1.5;
 }
+
+/* =========================
+   Unified buttons
+========================= */
+
+button,
+.btn {
+  display: block;
+  width: 100%;
+  max-width: var(--button-width);
+  margin: 0 auto;
+  padding: 14px 22px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: 600;
+  line-height: 1.35;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Click feedback */
+button:active,
+.btn:active {
+  opacity: 0.85;
+}
+
+/* =========================
+   Button groups
+========================= */
 
 .links {
-  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
 }
 
-.btn {
-  display: inline-block;
-  margin: 8px;
-  padding: 12px 22px;
-  border-radius: 8px;
+/* =========================
+   Button colors
+========================= */
+
+/* Play button */
+button#playBtn {
+  background: #e53935;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+/* WhatsApp */
+.btn.whatsapp {
+  background: #25d366;
+  color: #ffffff;
   text-decoration: none;
-  color: white;
-  font-size: 16px;
+  font-weight: 700;
 }
 
-.whatsapp {
-  background: #25D366;
-  font-weight: bold;
-}
-.whatsapp {
-  text-decoration: none;
-}
-
+/* Home */
 .btn.home {
-  display: block;
-  margin: 12px auto 0;
-  padding: 14px 22px;
-  background-color: #2c7be5; /* calm blue */
+  background: #2c7be5;
   color: #ffffff;
   text-decoration: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  max-width: 320px;
-  text-align: center;
 }
 
-.btn.home:hover {
-  background-color: #1a5bb8;
+/* Hover states */
+button:hover {
+  filter: brightness(1.05);
 }
 
-.btn.home {
-  display: block;
-  margin: 12px auto 0;
-  padding: 14px 22px;
-
-  /* FORCE consistent color */
-  background-color: #2c7be5 !important;
-  color: #ffffff !important;
-
-  text-decoration: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  max-width: 320px;
-  text-align: center;
-
-  /* Firefox-specific resets */
-  appearance: none;
-  -moz-appearance: none;
-  border: none;
+.btn:hover {
+  filter: brightness(1.05);
 }
 
-.btn.home:visited {
-  background-color: #2c7be5;
-  color: #ffffff;
+/* =========================
+   Footer
+========================= */
+
+footer {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
-.btn.home:hover,
-.btn.home:focus {
-  background-color: #1a5bb8;
-  color: #ffffff;
+/* =========================
+   Small screens
+========================= */
+
+@media (max-width: 360px) {
+  :root {
+    --button-width: 100%;
+  }
 }
-
-
-
-
