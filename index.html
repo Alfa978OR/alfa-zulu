@@ -9,8 +9,8 @@
   <meta property="og:title" content="Alfa Online Radio">
   <meta property="og:description" content="Lalela ukufundwa kweBhayibheli ngesiZulu">
   <meta property="og:image" content="https://alfa-zulu.pages.dev/og-image-v4.png">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="640">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://alfa-zulu.pages.dev/">
   <meta property="og:type" content="website">
 
@@ -22,10 +22,10 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 
-  <!-- LIVE blink animation -->
+  <!-- LIVE status styles -->
   <style>
     .audio-status {
-      margin-top: 0.6rem;
+      margin-top: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.04em;
     }
@@ -45,7 +45,7 @@
 
     @keyframes blink {
       0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0.3; }
+      25%, 75% { opacity: 0.35; }
     }
 
     button:disabled {
@@ -60,17 +60,24 @@
     <img src="logo.png" alt="Station Logo" class="logo">
 
     <p class="tagline">
-      <span>Khetha u-“Dlala ▶️ Play” ukuze ulalele ukufundwa kweBhayibheli.⚠️🔇 Ekuqaleni kuba nokuthula cishe imizuzwana engu-10–20, 📢 bese kulandela isikhangiso (30–40s) ngaphambi kokuba kuqale ukufundwa.</span>
+      <span>
+        Khetha u-“Dlala ▶️ Play” ukuze ulalele ukufundwa kweBhayibheli.
+        ⚠️🔇 Ekuqaleni kuba nokuthula cishe imizuzwana engu-10–20,
+        ⚠️📢 bese kulandela isikhangiso solimi lwangaphandle
+        (imizuzwana engu-30–40) ngaphambi kokuba kuqale
+        ukufundwa kweZwi likaNkulunkulu.
+      </span>
     </p>
 
-    <button id="playBtn">
+    <button id="playBtn" data-cf-analytics="Play Button Click">
       Dlala ▶️ Play
     </button>
 
     <div id="audioStatus" class="audio-status paused">
-      ⏸️ PAUSED
+      KUMISIWE ⏸️ PAUSED
     </div>
 
+    <!-- 🔗 Action buttons -->
     <div class="links">
       <a
         href="https://chat.whatsapp.com/LFdZxr0VG6S6omDG2KlukL"
@@ -78,12 +85,35 @@
         target="_blank"
         rel="noopener"
       >
-        <span>Joyina Iqembu labaLaleli</span><br>
-        <span>👥💬 ku-WhatsApp</span>
+        <span>Joyina iqembu</span><br>
+        <span>👥💬 labaLaleli ku-WhatsApp</span>
       </a>
 
-      <a href="https://alfaradio.co.za/" class="btn home">
-        🏠 Buya ekhasini lekhaya
+      <!-- 📖 isiZulu Bible -->
+      <a
+        href="https://www.bible.com/zu/bible/1922/GEN.1.ZUL59"
+        class="btn read-bible"
+        target="_blank"
+        rel="noopener"
+      >
+        📖 Funda iBhayibheli ngesiZulu
+      </a>
+
+      <!-- ℹ️ Info -->
+      <a
+        href="https://zulu.alfaradio.co.za/info"
+        class="btn info"
+        onclick="if (window.cfBeacon) cfBeacon.trackEvent('zulu_info');"
+      >
+        ℹ️ Mayelana ne-Alfa Radio
+      </a>
+
+      <!-- 🏠 Home -->
+      <a
+        href="https://alfaradio.co.za/"
+        class="btn home"
+      >
+        🏠 Buyela ekhasini lekhaya
       </a>
     </div>
 
@@ -91,11 +121,12 @@
       <source src="https://stream.zeno.fm/u8opaslsv5fvv" type="audio/mpeg">
     </audio>
   </div>
+
   <footer>
     © 2026 Alfa Online Radio
   </footer>
 
-  <!-- ✅ SINGLE, CLEAN SCRIPT -->
+  <!-- ✅ SINGLE, SAFE SCRIPT -->
   <script>
     const audio = document.getElementById("radio");
     const playBtn = document.getElementById("playBtn");
@@ -110,7 +141,7 @@
 
     async function playStream() {
       playBtn.disabled = true;
-      setStatus("connecting", "⏳ CONNECTING…");
+      setStatus("connecting", "KUYAXHUMANA… ⏳ CONNECTING…");
 
       try {
         await audio.play();
@@ -122,11 +153,12 @@
     function pauseStream() {
       audio.pause();
       playBtn.textContent = "Dlala ▶️ Play";
-      setStatus("paused", "⏸️ PAUSED");
+      playBtn.disabled = false;
+      setStatus("paused", "KUMISIWE ⏸️ PAUSED");
     }
 
     function scheduleRetry() {
-      setStatus("connecting", "🔁 RETRYING…");
+      setStatus("connecting", "🔁 KUZAMA FUTHI…");
       retryTimer = setTimeout(playStream, 3000);
     }
 
@@ -142,13 +174,23 @@
       clearTimeout(retryTimer);
       playBtn.disabled = false;
       playBtn.textContent = "Misa kancane ⏸️ Pause";
-      setStatus("live", "🔴 LIVE");
+      setStatus("live", "KUYADLALA / BUKHOMA 🔴 LIVE");
+
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: "Alfa Online Radio",
+          artist: "Live Broadcast",
+          artwork: [
+            { src: "icon-192.png", sizes: "192x192", type: "image/png" },
+            { src: "icon-512.png", sizes: "512x512", type: "image/png" }
+          ]
+        });
+      }
     });
 
     audio.addEventListener("pause", () => {
       if (!audio.ended) {
-        playBtn.disabled = false;
-        setStatus("paused", "⏸️ PAUSED");
+        setStatus("paused", "KUMISIWE ⏸️ PAUSED");
       }
     });
 
