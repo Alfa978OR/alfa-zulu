@@ -1,70 +1,111 @@
 <!DOCTYPE html>
-<html lang="zu">
+<html lang="ss">
 <head>
   <meta charset="utf-8">
-  <title>Info | Alfa Online Radio</title>
+  <title>Mayelana | Alfa Online Radio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-  <meta name="description" content="Ulwazi ngesiZulu lwe-Alfa Online Radio – imininingwane, inhloso, nokuxhumana.">
+  <meta name="description" content="Lwati lwesiSwati ku-Alfa Online Radio – imininingwane, injongo, nekuchumana.">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#0f172a">
- 
+  <meta name="theme-color" content="#111111">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Info Siswati | Alfa Online Radio">
-  <meta property="og:description" content="Ulwazi ngesiZulu nge-Alfa Online Radio.">
+  <meta property="og:title" content="Mayelana | Alfa Online Radio">
+  <meta property="og:description" content="Lwati lwesiSwati nge-Alfa Online Radio.">
   <meta property="og:url" content="https://isizulu.alfaradio.co.za/info.html">
   <meta property="og:image" content="/og-image.png">
- 
+
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
- 
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      margin: 0;
-      line-height: 1.6;
+    /* =========================
+       Shared design system
+    ========================= */
+
+    :root {
+      /* Colors */
+      --bg-dark: #111111;
+      --text-main: #ffffff;
+      --text-soft: #f1f5f9;
+
+      --blue-home: #2563eb;
+      --blue-home-hover: #1d4ed8;
+
+      --green-whatsapp: #25d366;
+      --green-whatsapp-hover: #1ebe5b;
+
+      --blue-heading: #38bdf8;
+
+      /* Typography */
+      --font-body: 16.5px;
+      --font-h1: 1.8rem;
+      --font-h2: 1.35rem;
+      --font-button: 1rem;
+      --font-footer: 0.85rem;
+
+      --line-body: 1.65;
     }
- 
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: var(--font-body);
+      line-height: var(--line-body);
+      background: var(--bg-dark);
+      color: var(--text-main);
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
     header {
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 1.2rem;
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
- 
-    header img {
-      display: none; /* CHANGE 1: Hide logo image */
-    }
- 
+
     header h1 {
-      margin: 0.2rem 0 0;
-      font-size: 1.8rem;
+      margin: 0;
+      font-size: var(--font-h1);
+      font-weight: 700;
     }
- 
+
+    /* =========================
+       Main content
+    ========================= */
+
     main {
       max-width: 720px;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
     }
- 
+
     section {
-      margin-bottom: 2.2rem;
+      margin-bottom: 2.4rem;
     }
- 
+
     section h2 {
-      font-size: 1.4rem;
+      font-size: var(--font-h2);
       margin-bottom: 0.4rem;
-      color: #38bdf8;
+      color: var(--blue-heading);
     }
- 
+
     section p {
       opacity: 0.9;
     }
- 
+
+    /* =========================
+       Action buttons
+    ========================= */
+
     .actions {
       margin-top: 3rem;
       display: flex;
@@ -72,103 +113,113 @@
       gap: 1rem;
       align-items: center;
     }
- 
+
     .btn {
       display: inline-block;
-      padding: 0.75rem 1.3rem;
-      border-radius: 0.5rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 0.6rem;
       font-weight: 600;
+      font-size: var(--font-button);
       text-decoration: none;
       text-align: center;
-      width: 240px; /* CHANGE 2: Fixed width for uniform button size */
+      width: 260px;
     }
- 
+
     .btn-home {
-      background: #3b82f6; /* CHANGE 3: Blue color for Home button */
-      color: #f8fafc;
+      background: var(--blue-home);
+      color: #ffffff;
     }
- 
+
     .btn-home:hover {
-      background: #2563eb;
+      background: var(--blue-home-hover);
     }
- 
+
     .btn-whatsapp {
-      background: #25d366;
+      background: var(--green-whatsapp);
       color: #052e16;
     }
- 
+
     .btn-whatsapp:hover {
-      background: #1ebe5b;
+      background: var(--green-whatsapp-hover);
     }
- 
+
+    /* =========================
+       Footer
+    ========================= */
+
     footer {
       text-align: center;
       padding: 1.5rem;
-      font-size: 0.85rem;
+      font-size: var(--font-footer);
       opacity: 0.75;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
+
+    /* =========================
+       Small phones
+    ========================= */
+
+    @media (max-width: 360px) {
+      :root {
+        --font-body: 16px;
+        --font-h1: 1.65rem;
+        --font-h2: 1.25rem;
+      }
+
+      main {
+        padding: 1.8rem 1.2rem 2.6rem;
+      }
+    }
   </style>
- 
+
   <!-- Cloudflare Web Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "0505b11108564b33b0d5d66509727745"}'>
   </script>
 </head>
- 
+
 <body>
   <header>
-    <img
-      src="https://alfaradio.co.za/radio-pwa/alfa-logo-landing-v3.png"
-      alt="Alfa Radio logo">
-    <h1>Alfa Online Radio</h1>
+    <h1>Mayelana ne-Alfa Online Radio</h1>
   </header>
- 
+
   <main>
     <section id="identity">
-      <h2>Ubani futhi yini i-Alfa Online Radio?</h2>
+      <h2>Ngubani futsi yini i-Alfa Online Radio?</h2>
       <p>
-        IRadio Alfa yaqala ukusakaza iVangeli ku-FM ngenyanga kaMeyi ngonyaka ka-2000.
-        I-Alfa Online Radio yaqala ukusakaza ku-inthanethi ngenyanga kaSepthemba ngonyaka ka-2023
-        ngesiSwati nangesiZulu. Abalaleli bangafinyelela izinhlelo nokuqukethwe kwe-Alfa Online Radio
-        besebenzisa amafoni abo aphathwayo kanye namakhompyutha.
+        IRadio Alfa yacala kusakata Tindzaba Letimnandzi ku-FM ngenyanga yaMeyi ngemnyaka wa-2000.
+        I-Alfa Online Radio yacala kusakateka nge-inthanethi ngenyanga yaSepthemba ngemnyaka wa-2023
+        ngesiSwati nangesiZulu. Balaleli bangalalela tinhlelo nemisebenti ye-Alfa Online Radio
+        ngemakhalekhukhwini abo kanye nangemakhompyutha. I-app lensha, lehlelelwe kahle kusebenta
+        ngemakhalekhukhwini, yethulwa ngenyanga yaBhimbidvwane (January) ngemnyaka wa-2026.
       </p>
+      Umsebenti we-Alfa Online Radio uchazwa kahle kakhulu yilamavesi eBhayibheli lalandzelako: Asitishumayeli tsine, kodvwa sishumayela kutsi Khristu Jesu uyiNkhosi, tsine-ke sitisebenti tenu ngenca yakhe. (2 kubaseKorinthe 4:5)
       <p>
-        CONTENT TO FOLLOW
-      </p>
-      <p>
-        CONTENT TO FOLLOW
+        I-Alfa Online Radio isakata kufundvwa kweBhayibheli ngevesi nangevesi, kufundziswa
+        kweBhayibheli, kanye nemicondvo nekukhutsata lokwakha umoya. Luhlelo lwetinhlelo
+        netindzaba letimayelana nekusakata kwabelwana ngato ngeWhatsApp Community Group.
       </p>
     </section>
- 
+
     <section id="general-info">
-      <h2>CONTENT TO FOLLOW</h2>
+      <h2>Kungani libito lelitsi "Alfa"?</h2>
       <p>
-CONTENT TO FOLLOW
+        Libito lelitsi <strong>"Alfa"</strong> libonakalisa umlayeto weBhayibheli lotsi Nkulunkulu
+        usicalo nesiphetfo, ungumtfombo wekuphila, weliciniso, futsi unguLowo lowenta konkhe kube
+        kusha.
       </p>
-      <p>
-        • CONTENT TO FOLLOW
-      </p>
-      <p>
-        • CONTENT TO FOLLOW
-      </p>
-      <p>
-        • CONTENT TO FOLLOW
+      • Mine ngingu-Alfa na-Omega,”kusho iNkhosi, Nkulunkulu, Somandla lokhona, nalabekhona, nalotako. (Sembulo 1:8)
+      <p/p>
+• Ngingu-Alfa na-Omega, wekucala newekugcina, sicalo nesiphetfo. (Sembulo 22:13)
       </p>
     </section>
- 
+
     <section id="contact">
-      <h2>CONTENT TO FOLLOW</h2>
-      <p>
-        • CONTENT TO FOLLOW
-      </p>
-      <p>
-        • CONTENT TO FOLLOW
-        <strong>info@alfaradio.co.za</strong>.
-      </p>
+      <h2>Imininingwane yekutsintana</h2>
+      <p>• Joyina iWhatsApp Community Group kute utfole timemetelo kanye netindzaba tetinhlelo.</p>
+      <p>• I-imeyili: <strong>info@alfaradio.co.za</strong></p>
     </section>
- 
-    <!-- 🔗 Action buttons -->
+
     <div class="actions">
       <a
         href="https://chat.whatsapp.com/LFdZxr0VG6S6omDG2KlukL"
@@ -176,20 +227,21 @@ CONTENT TO FOLLOW
         target="_blank"
         rel="noopener"
       >
-        👥💬 Joyina Iqembu Labalaleli Be-WhatsApp
+        <span>Hlanganyela licembu</span><br>
+        <span>👥💬 leWhatsApp lebalaleli</span>
       </a>
- 
+
       <a href="https://isizulu.alfaradio.co.za" class="btn btn-home">
         ⬅️ Buyela Ekhaya 🏠
       </a>
     </div>
   </main>
- 
+
   <footer>
     © <span id="year"></span> Alfa Online Radio
   </footer>
- 
-    <script>
+
+  <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
