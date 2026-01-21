@@ -27,7 +27,7 @@
   --font-footer: clamp(12.5px, 1.6vh, 14px);
 
   /* =====================
-     TAGLINE (fixed, tighter)
+     TAGLINE
   ===================== */
 
   --font-tagline: 0.95rem;
@@ -52,9 +52,14 @@
 :root {
   --red-play: #e53935;
   --green-whatsapp: #25d366;
-  --blue-home: #2563eb;
-  --blue-info: #475569;
-  --blue-info-hover: #334155;
+
+  /* SWAPPED ROLE COLORS */
+  --blue-home: #475569;        /* was Info */
+  --blue-home-hover: #334155;
+
+  --blue-info: #2563eb;        /* was Home */
+  --blue-info-hover: #1e4ed8;
+
   --text-soft: #f1f5f9;
   --bg-dark: #111111;
 }
@@ -199,21 +204,25 @@ button#playBtn:disabled {
 }
 
 /* =========================
-   Home
+   Home (NOW GREY/INFO COLOR)
 ========================= */
 
 .btn.home {
   background: var(--blue-home);
-  color: #ffffff;
+  color: var(--text-soft);
+}
+
+.btn.home:hover {
+  background: var(--blue-home-hover);
 }
 
 /* =========================
-   Info
+   Info (NOW BLUE/HOME COLOR)
 ========================= */
 
 .btn.info {
   background-color: var(--blue-info);
-  color: var(--text-soft);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
