@@ -3,45 +3,21 @@
 ========================= */
 
 :root {
-  /* Widths */
   --button-width: 320px;
 
-  /* =====================
-     FONT SIZE RAMPS
-     (safe for older Android)
-  ===================== */
-
-  /* Base app text */
   --font-base: clamp(16px, 2.1vh, 18px);
-
-  /* Buttons */
   --font-button: clamp(15.5px, 2.0vh, 17.5px);
-
-  /* Primary (Play) button */
   --font-button-strong: clamp(17px, 2.4vh, 20px);
-
-  /* Audio status */
   --font-status: clamp(14.5px, 1.9vh, 16px);
-
-  /* Footer */
   --font-footer: clamp(12.5px, 1.6vh, 14px);
-
-  /* =====================
-     TAGLINE
-  ===================== */
 
   --font-tagline: 0.95rem;
   --line-tagline: 1.15;
-
-  /* =====================
-     Font weights
-  ===================== */
 
   --weight-normal: 400;
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  /* Line heights */
   --line-normal: 1.35;
 }
 
@@ -53,19 +29,21 @@
   --red-play: #e53935;
   --green-whatsapp: #25d366;
 
-  /* SWAPPED ROLE COLORS */
-  --blue-home: #475569;        /* was Info */
+  /* Home = neutral */
+  --blue-home: #475569;
   --blue-home-hover: #334155;
+  --blue-home-active: #1f2937;
 
-  --blue-info: #2563eb;        /* was Home */
+  /* Info = primary */
+  --blue-info: #2563eb;
   --blue-info-hover: #1e4ed8;
+  --blue-info-active: #1e40af;
 
   --text-soft: #f1f5f9;
   --bg-dark: #111111;
 }
 
 :root {
-  /* Bible button */
   --brown-bible: #8b5a2b;
   --brown-bible-hover: #744821;
   --text-bible: #fff7e6;
@@ -83,38 +61,9 @@ body {
   margin: 0;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: var(--font-base);
-  font-weight: var(--weight-normal);
   background: var(--bg-dark);
   color: #ffffff;
   text-align: center;
-}
-
-/* =========================
-   Header / logo
-========================= */
-
-.logo {
-  width: 100%;
-  max-width: 720px;
-  max-height: 120px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 0.8rem;
-}
-
-/* =========================
-   TAGLINE
-========================= */
-
-.tagline {
-  font-size: var(--font-tagline);
-  line-height: var(--line-tagline);
-  opacity: 0.85;
-  margin-bottom: 26px;
-  max-width: 36ch;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* =========================
@@ -133,28 +82,28 @@ body {
 
 .btn {
   text-decoration: none;
-}
-
-button,
-.btn {
   display: block;
   width: 100%;
   max-width: var(--button-width);
   margin: 0 auto;
   padding: 14px 22px;
-  text-align: center;
+
   border-radius: 10px;
   font-size: var(--font-button);
   font-weight: var(--weight-semibold);
   line-height: var(--line-normal);
+
   cursor: pointer;
   border: none;
-  appearance: none;
-  -webkit-appearance: none;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 /* =========================
-   Button groups
+   Button group
 ========================= */
 
 .links {
@@ -165,7 +114,7 @@ button,
 }
 
 /* =========================
-   PLAY BUTTON (PRIMARY)
+   PLAY BUTTON
 ========================= */
 
 button#playBtn {
@@ -178,9 +127,7 @@ button#playBtn {
   text-transform: uppercase;
 
   border-radius: 14px;
-
   box-shadow: 0 6px 18px rgba(229, 57, 53, 0.45);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 button#playBtn:active {
@@ -188,23 +135,18 @@ button#playBtn:active {
   box-shadow: 0 3px 10px rgba(229, 57, 53, 0.35);
 }
 
-button#playBtn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
 /* =========================
    WhatsApp
 ========================= */
 
 .btn.whatsapp {
-  background-color: var(--green-whatsapp);
+  background: var(--green-whatsapp);
   color: #ffffff;
   font-weight: var(--weight-bold);
 }
 
 /* =========================
-   Home (NOW GREY/INFO COLOR)
+   HOME (neutral) + icon
 ========================= */
 
 .btn.home {
@@ -212,26 +154,49 @@ button#playBtn:disabled {
   color: var(--text-soft);
 }
 
+.btn.home::before {
+  content: "🏠";
+  margin-right: 0.5rem;
+}
+
 .btn.home:hover {
   background: var(--blue-home-hover);
 }
 
+.btn.home:active {
+  background: var(--blue-home-active);
+  transform: scale(0.97);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
 /* =========================
-   Info (NOW BLUE/HOME COLOR)
+   INFO (primary) + icon
 ========================= */
 
 .btn.info {
-  background-color: var(--blue-info);
+  background: var(--blue-info);
   color: #ffffff;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+
   font-size: 0.92rem;
 }
 
+.btn.info::before {
+  content: "ℹ️";
+}
+
 .btn.info:hover {
-  background-color: var(--blue-info-hover);
+  background: var(--blue-info-hover);
+}
+
+.btn.info:active {
+  background: var(--blue-info-active);
+  transform: scale(0.97);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);
 }
 
 /* =========================
@@ -239,22 +204,12 @@ button#playBtn:disabled {
 ========================= */
 
 .btn.read-bible {
-  background-color: var(--brown-bible);
+  background: var(--brown-bible);
   color: var(--text-bible);
-  font-weight: var(--weight-semibold);
 }
 
 .btn.read-bible:hover {
-  background-color: var(--brown-bible-hover);
-}
-
-/* =========================
-   Hover (general)
-========================= */
-
-button:hover,
-.btn:hover {
-  filter: brightness(1.05);
+  background: var(--brown-bible-hover);
 }
 
 /* =========================
@@ -284,7 +239,7 @@ footer {
 }
 
 /* =========================
-   Very small / older phones
+   Small phones
 ========================= */
 
 @media (max-width: 360px) {
